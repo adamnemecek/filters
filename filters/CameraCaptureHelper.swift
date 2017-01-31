@@ -33,19 +33,10 @@ class CameraCaptureHelper: NSObject {
     fileprivate func initialiseCaptureSession() {
         captureSession.sessionPreset = AVCaptureSessionPresetPhoto
         
-        var camera: AVCaptureDevice?
+        let discoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera], mediaType: AVMediaTypeVideo, position: cameraPosition)
         
-        if cameraPosition == .back {
-        
-            if let dualCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInDuoCamera,  mediaType: AVMediaTypeVideo, position: .back) {
-                camera = dualCameraDevice
-            } else if let backCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back) {
-                camera = backCameraDevice
-            }
-        } else {
-            if let frontCamera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front) {
-                camera = frontCamera
-            }
+        guard let camera = discoverySession?.devices.first else {
+            fatalError("Unable to access camera")
         }
         
         do {

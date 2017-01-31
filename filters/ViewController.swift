@@ -27,7 +27,7 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     }
 
     override func viewDidLayoutSubviews() {
-        imageView.frame = view.bounds.insetBy(dx: 50, dy: 50)
+        imageView.frame = view.bounds.insetBy(dx: 5, dy: 5)
     }
     
     override func didReceiveMemoryWarning() {

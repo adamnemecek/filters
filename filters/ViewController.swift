@@ -12,7 +12,7 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
 
     let imageView = MetalImageView()
     
-    let cameraCaptureHelper = CameraCaptureHelper(cameraPosition: .back)
+    let cameraCaptureHelper = CameraCaptureHelper(cameraPosition: .front)
     
     let crystalize = CIFilter(name: "CICrystallize", withInputParameters: [kCIInputRadiusKey: 30])!
     

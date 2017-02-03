@@ -14,6 +14,24 @@ class ThresholdFilter: CIFilter {
     var inputThreshold: CGFloat = 0.75
     var thresholdKernel: CIColorKernel?
     
+    override var attributes: [String : Any] {
+        return [
+            kCIAttributeFilterName: "Threshold Filter",
+            "inputImage": [kCIAttributeIdentity: 0,
+                           kCIAttributeClass: "CIImage",
+                           kCIAttributeDisplayName: "Image",
+                           kCIAttributeType: kCIAttributeTypeImage],
+            "inputThreshold": [kCIAttributeIdentity: 0,
+                               kCIAttributeClass: "NSNumber",
+                               kCIAttributeDefault: 0.75,
+                               kCIAttributeDisplayName: "Threshold",
+                               kCIAttributeMin: 0,
+                               kCIAttributeSliderMin: 0,
+                               kCIAttributeSliderMax: 1,
+                               kCIAttributeType: kCIAttributeTypeScalar]
+        ]
+    }
+    
     override func setDefaults() {
         inputThreshold = 0.5
     }

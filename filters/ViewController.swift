@@ -13,9 +13,7 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     let imageView = MetalImageView()
     
     let cameraCaptureHelper = CameraCaptureHelper(cameraPosition: .front)
-    
-    //let crystalize = CIFilter(name: "CICrystallize", withInputParameters: [kCIInputRadiusKey: 30])!
-    let threshold = ThresholdFilter()
+    let thresholdFiter = ThresholdFilter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +21,8 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
         view.addSubview(imageView)
         
         cameraCaptureHelper.delegate = self
+        
+        CustomFiltersVendor.registerFilters()
         
         // Do any additional setup after loading the view, typically from a nib.
     }

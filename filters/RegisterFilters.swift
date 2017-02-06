@@ -22,6 +22,8 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
             classAttributes: [
                 kCIAttributeFilterCategories: [CategoryCustomFilters]
             ])
+        
+        CIFilter.registerName("StarBurstFilter", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
     }
     
     func filter(withName: String) -> CIFilter?
@@ -30,6 +32,9 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
         {
         case "ThresholdFilter":
             return ThresholdFilter()
+            
+        case "StarBurstFilter":
+            return StarBustFilter()
             
         default:
             return nil

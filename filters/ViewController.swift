@@ -13,7 +13,7 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     let imageView = MetalImageView()
     
     let cameraCaptureHelper = CameraCaptureHelper(cameraPosition: .front)
-    let thresholdFiter = ThresholdFilter()
+    let starBurstFilter = StarBustFilter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,9 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     }
 
     func newCameraImage(_ cameraCaptureHelper: CameraCaptureHelper, image: CIImage) {
-        threshold.setValue(image, forKey: kCIInputImageKey)
+        starBurstFilter.setValue(image, forKey: kCIInputImageKey)
         
-        imageView.image = threshold.outputImage
+        imageView.image = starBurstFilter.outputImage
     }
 }
 

@@ -26,6 +26,8 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
         CIFilter.registerName("StarBurstFilter", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
         
         CIFilter.registerName("RGBChannelCompositing", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
+        
+        CIFilter.registerName("RGBChannelBrightnessAndContrast", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
     }
     
     func filter(withName: String) -> CIFilter?
@@ -40,6 +42,9 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
             
         case "RGBChannelCompositing":
             return RGBChannelCompositing();
+            
+        case "RGBChannelBrightnessAndContrast":
+            return RGBChannelBrightnessAndContrast()
             
         default:
             return nil

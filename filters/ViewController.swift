@@ -13,7 +13,8 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     let imageView = MetalImageView()
     
     let cameraCaptureHelper = CameraCaptureHelper(cameraPosition: .front)
-    let starBurstFilter = StarBustFilter()
+    //let starBurstFilter = StarBustFilter()
+    let rgbCompositing = RGBChannelCompositing()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +38,17 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     }
 
     func newCameraImage(_ cameraCaptureHelper: CameraCaptureHelper, image: CIImage) {
-        starBurstFilter.setValue(image, forKey: kCIInputImageKey)
+        //starBurstFilter.setValue(image, forKey: kCIInputImageKey)
         
-        imageView.image = starBurstFilter.outputImage
+        let redImage = image.applyingFilter("CIColorControls", withInputParameters: [kCIInputContrastKey: 2.8])
+        let greenImage = image.applyingFilter("CIColorControls", withInputParameters: [kCIInputContrastKey: 2.25, kCIInputBrightnessKey: 0.25])
+        let blueImage = image.applyingFilter("CIColorControls", withInputParameters: [kCIInputBrightnessKey: -0.25])
+        
+        rgbCompositing.inputRedImage = redImage
+        rgbCompositing.inputGreenImage = greenImage
+        rgbCompositing.inputBlueImage = blueImage
+        
+        imageView.image = rgbCompositing.outputImage
     }
 }
 

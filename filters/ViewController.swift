@@ -16,7 +16,8 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     //let starBurstFilter = StarBustFilter()
     //let rgbCompositing = RGBChannelCompositing()
     //let rgb
-    let rgbChannelGaussianBlur = RGBChannelGaussianBlur()
+    //let rgbChannelGaussianBlur = RGBChannelGaussianBlur()
+    let chromaAber = ChromaticAbberation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +43,10 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     func newCameraImage(_ cameraCaptureHelper: CameraCaptureHelper, image: CIImage) {
         //starBurstFilter.setValue(image, forKey: kCIInputImageKey)
         
-        rgbChannelGaussianBlur.inputRedRadius = 0.0
-        rgbChannelGaussianBlur.inputGreenRadius = 20.0
-        rgbChannelGaussianBlur.inputBlueRadius = 0.0
-        rgbChannelGaussianBlur.inputImage = image
+        chromaAber.inputRadius = 4.0
+        chromaAber.inputImage = image
         
-        imageView.image = rgbChannelGaussianBlur.outputImage
+        imageView.image = chromaAber.outputImage
     }
 }
 

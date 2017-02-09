@@ -30,6 +30,8 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
         CIFilter.registerName("RGBChannelBrightnessAndContrast", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
         
         CIFilter.registerName("RGBChannelGaussianBlur", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
+        
+        CIFilter.registerName("ChromaticAbberation", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
     }
     
     func filter(withName: String) -> CIFilter?
@@ -50,6 +52,9 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
             
         case "RGBChannelGaussianBlur":
             return RGBChannelGaussianBlur()
+        
+        case "ChromaticAbberation":
+            return ChromaticAbberation()
             
         default:
             return nil

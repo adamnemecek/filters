@@ -17,7 +17,8 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     //let rgbCompositing = RGBChannelCompositing()
     //let rgb
     //let rgbChannelGaussianBlur = RGBChannelGaussianBlur()
-    let chromaAber = ChromaticAbberation()
+    //let chromaAber = ChromaticAbberation()
+    let carnivalMirror = CarnivalMirror()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +44,9 @@ class ViewController: UIViewController, CameraCaptureHelperDelegate {
     func newCameraImage(_ cameraCaptureHelper: CameraCaptureHelper, image: CIImage) {
         //starBurstFilter.setValue(image, forKey: kCIInputImageKey)
         
-        chromaAber.inputRadius = 4.0
-        chromaAber.inputImage = image
+        carnivalMirror.inputImage = image
         
-        imageView.image = chromaAber.outputImage
+        imageView.image = carnivalMirror.outputImage
     }
 }
 

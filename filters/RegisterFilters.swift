@@ -34,6 +34,9 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
         CIFilter.registerName("ChromaticAbberation", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
         
         CIFilter.registerName("CarnivalMirror", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
+        
+        CIFilter.registerName("MaskedBlur", constructor: CustomFiltersVendor(), classAttributes: [kCIAttributeFilterCategories: [CategoryCustomFilters]])
+
     }
     
     func filter(withName: String) -> CIFilter?
@@ -60,6 +63,9 @@ class CustomFiltersVendor: NSObject, CIFilterConstructor
             
         case "CarnivalMirror":
             return CarnivalMirror()
+        
+        case "MaskedBlur":
+            return MaskedBlur()
             
         default:
             return nil
